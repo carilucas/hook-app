@@ -6,7 +6,8 @@ import '../02-useEffect/effects.css'
 export const MultipleCustomHooks = () => {
    const { state, increment }= useCounter(1,0);
    const { loading, data}  = useFetch(`https://www.breakingbadapi.com/api/quotes/${state}`);
-   
+   const { author, quote } = !!data && data[0];
+
    return (
       <div>
          <h1>Breaking Bad Quotes!!!</h1>
@@ -19,9 +20,9 @@ export const MultipleCustomHooks = () => {
                </div>
             :
                <blockquote className="blockquote text-end">
-                  <p className="mb-3">{data[0].quote}</p>
+                  <p className="mb-3">{quote}</p>
                   <footer className="blockquote-footer">
-                     {data[0].author}
+                     {author}
                   </footer>
                </blockquote>
          }
